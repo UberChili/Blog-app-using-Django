@@ -1,0 +1,12 @@
+#taglist {
+    display: inline;
+    list-style: none;
+}
+
+/* #taglist li { */
+/*     display: inline; */
+/* } */
+
+/* #taglist li:after { */
+/*     content: ", "; */
+/* } */

@@ -1,0 +1,26 @@
+{% extends "blogs/base.html" %}
+{% block content %}
+<!-- {% load static %} -->
+
+<!-- <head> -->
+<!--     <link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}"/> -->
+<!-- </head> -->
+
+
+<h1>
+    Posts tagged with: {{ tag }}
+</h1>
+
+<ul>
+    {% for post in posts %}
+    <h2>
+      {{ post.title }}
+    </h2>
+    <p> At {{ post.date_added }} Andrés wrote: </p>
+    <div>{{ post.shorter_body}}</div>
+    <a href="{% url 'blogs:post' post.id %}">Read more...</a>
+    <hr class="solid">
+    {% endfor %}
+</ul>
+
+{% endblock content %}

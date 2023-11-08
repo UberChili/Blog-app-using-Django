@@ -1,0 +1,37 @@
+{% extends "blogs/base.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+ - <a href="{% url 'blogs:edit_post' post.id %}">Edit this post</a>
+{% endif %}
+
+<h1>
+    {{ post }}
+</h1>
+
+<p> At {{ post.date_added }} Andrés wrote: </p>
+
+<div>
+    {{ post.body }}
+</div>
+
+<h3>Tags: </h3>
+<ul class="taglist">
+    {% for tag in post.tag.all %}
+    <!-- <li>{{ tag }}</li> -->
+    <li><a href="{% url 'blogs:tag' tag.id %}">{{ tag }}</a></li>
+    {% endfor %}
+</ul>
+
+<!-- <ul> -->
+<!--     {% for post in posts %} -->
+<!--     <h2> -->
+<!--       {{ post.title }} -->
+<!--     </h2> -->
+<!--     <p> At {{ post.date_added }} Andrés wrote: </p> -->
+<!--     <div>{{ post.short_body}}</div> -->
+<!--     <hr class="solid"> -->
+<!--     {% endfor %} -->
+<!-- </ul> -->
+
+{% endblock content %}

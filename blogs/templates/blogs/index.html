@@ -1,0 +1,43 @@
+{% extends "blogs/base.html" %}
+{% block content %}
+<!-- {% load static %} -->
+
+<!-- <head> -->
+<!--     <link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}"/> -->
+<!-- </head> -->
+
+{% if user.is_authenticated %}
+- <a href="{% url 'blogs:new_post' %}">New Post</a>
+{% else %}
+- <a href="{% url 'users:login' %}">Log In</a>
+{% endif %}
+
+<h1>
+  Wall of thoughts
+</h1>
+
+<p>
+    Showing the latest 5 posts...
+</p>
+
+<ul>
+    {% for post in posts|slice:":5" %}
+    <h2>
+      <!-- {{ post.title }} -->
+      <a href="{% url 'blogs:post' post.id %}">{{ post.title }}</a>
+    </h2>
+    <p> At {{ post.date_added }} Andrés wrote: </p>
+    <!-- <p>{{ post.body }}</p> -->
+    <div>{{ post.short_body }}</div>
+    <p>Tags: </p>
+    <ul class="taglist">
+        {% for tag in post.tag.all %}
+        <!-- <li>{{ tag }}</li> -->
+            <li><a href="{% url 'blogs:tag' tag.id %}">{{ tag }}</a></li>
+        {% endfor %}
+    </ul>
+    <hr class="solid">
+    {% endfor %}
+</ul>
+
+{% endblock content %}

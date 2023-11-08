@@ -1,0 +1,14 @@
+<!-- <a href="{% url 'blogs:index' %}">Andrés' Thoughts</a> - <a href="{% url 'blogs:new_post' %}"> New Post </a> -->
+<a href="{% url 'blogs:index' %}">Andrés' Thoughts</a>
+{% if user.is_authenticated %}
+    Hello, {{ user.username }}.
+    - <a href="{% url 'users:logout' %}">Log out</a>
+{% endif %}
+
+{% load static %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'blogs/style.css' %}"/>
+</head>
+
+{% block content %}{% endblock content %}
